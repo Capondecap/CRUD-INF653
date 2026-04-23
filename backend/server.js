@@ -6,6 +6,10 @@ const session = require('express-session');
 const csrf = require('csurf');
 const cors = require('cors');
 const cookieParser = require('cookie-parser');
+// TODO: Register middleware and mount routes
+
+const express = require('express');
+// TODO: import session, csrf, cors, cookieParser
 
 const authRoutes = require('./routes/auth');
 const contactRoutes = require('./routes/contacts');
@@ -57,4 +61,18 @@ app.use((err, req, res, next) => {
 app.listen(PORT, () => {
   console.log(`Backend running on http://localhost:${PORT}`);
   console.log('Demo credentials → username: demo  password: password123');
+// TODO: app.use(express.json())
+// TODO: app.use(cookieParser())
+// TODO: app.use(cors({ origin: 'http://localhost:5173', credentials: true }))
+// TODO: app.use(session({ ... }))
+// TODO: app.use(csrf({ cookie: true }))
+
+// Routes
+app.use('/api', authRoutes);
+app.use('/api/contacts', contactRoutes);
+
+// TODO: CSRF error handler middleware
+
+app.listen(PORT, () => {
+  console.log(`Backend running on http://localhost:${PORT}`);
 });

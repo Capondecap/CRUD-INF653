@@ -20,6 +20,15 @@ function deleteContact(username, id) {
   const before = db[username].length;
   db[username] = db[username].filter((c) => c.id !== id);
   return db[username].length < before; // true if something was removed
+  // TODO: return db[username] or []
+}
+
+function addContact(username, name, phone) {
+  // TODO: create contact { id: Date.now(), name, phone }, push to db[username], return it
+}
+
+function deleteContact(username, id) {
+  // TODO: remove contact by id, return true if removed, false if not found
 }
 
 module.exports = { getContacts, addContact, deleteContact };

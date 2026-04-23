@@ -12,6 +12,11 @@ const DEMO_USER = { username: 'demo', password: 'password123' };
 // Returns a fresh CSRF token for the frontend to store and re-send on mutations
 router.get('/csrf-token', (req, res) => {
   res.json({ csrfToken: req.csrfToken() });
+const DEMO_USER = { username: 'demo', password: 'password123' };
+
+// GET /api/csrf-token
+router.get('/csrf-token', (req, res) => {
+  // TODO: respond with { csrfToken: req.csrfToken() }
 });
 
 // POST /api/login
@@ -22,6 +27,7 @@ router.post('/login', (req, res) => {
     return res.json({ message: 'Logged in', username });
   }
   res.status(401).json({ error: 'Invalid credentials' });
+  // TODO: check credentials against DEMO_USER, set req.session.user, return 401 on failure
 });
 
 // POST /api/logout
@@ -30,6 +36,7 @@ router.post('/logout', requireAuth, (req, res) => {
     res.clearCookie('connect.sid');
     res.json({ message: 'Logged out' });
   });
+  // TODO: destroy session, clear cookie, respond with { message: 'Logged out' }
 });
 
 module.exports = router;
